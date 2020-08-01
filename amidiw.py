@@ -14,7 +14,7 @@ def run_command(command):
 
 
 class MIDIInterface:
-    channel = 1
+    channel = 0
     device = ""
 
     def __init__(self):
