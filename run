@@ -1,0 +1,1 @@
+exec -a midi-pedal python3 /home/pi/devl/midi/pedal.py &
