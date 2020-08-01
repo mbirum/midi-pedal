@@ -4,7 +4,7 @@ CC_ON = 127
 CC_OFF = 0
 
 
-def subprocess(command):
+def run_command(command):
     return subprocess.Popen(
         [command],
         shell=True,
@@ -21,7 +21,7 @@ class MIDIInterface:
         self.check_device()
 
     def check_device(self):
-        result = subprocess('amidi -l | grep hw')
+        result = run_command('amidi -l | grep hw')
         output, error = result.communicate()
         if output != "":
             self.device = output.split()[1]
@@ -34,5 +34,5 @@ class MIDIInterface:
             cc_hex = hex(cc).split('x')[1]
             value_hex = hex(value).split('x')[1]
             message = "B%s %s %s" % (self.channel, cc_hex, value_hex)
-            subprocess('amidi --port="%s" -S \'%s\'' % (self.device, message))
+            run_command('amidi --port="%s" -S \'%s\'' % (self.device, message))
 
